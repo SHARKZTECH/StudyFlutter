@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Main(),
+      home: Main(),
     );
   }
 }
@@ -27,26 +27,96 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("title"),
+        title: Text("Products Listings"),
       ),
-      body: Container(
-        height: 150,
-        child: const Card(
-          margin: EdgeInsets.all(15.0),
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Image(
-                  image: AssetImage("assets/images/user.png"),
-                  height: 130.0,
-                ),
-                Column(
-                  children: [Text("name"), Text("description"), Text("price")],
-                )
-              ],
-            ),
+      body: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
+        children: const [
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
           ),
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
+          ),
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
+          ),
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
+          ),
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
+          ),
+          ProductBox(
+            name: 'name',
+            description: 'description',
+            price: '10.0',
+            image: 'user.png',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProductBox extends StatelessWidget {
+  const ProductBox({
+    super.key,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+  });
+
+  final String name;
+  final String description;
+  final String price;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(2.0),
+      height: 120.0,
+      child: Card(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              "assets/images/$image",
+            ),
+            Expanded(
+                child: Container(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(description),
+                  Text(price.toString())
+                ],
+              ),
+            ))
+          ],
         ),
       ),
     );
