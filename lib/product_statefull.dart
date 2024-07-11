@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:study_project/product_page.dart';
+import 'rating_box.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -7,47 +9,71 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Products Listings"),
+        title: const Text("Products Listings"),
       ),
       body: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
-        children: const [
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            },
+            child: const ProductBox(
+              name: 'name',
+              description: 'description',
+              price: '10.0',
+              image: 'user.png',
+            ),
           ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            },
+            child: const ProductBox(
+              name: 'name',
+              description: 'description',
+              price: '10.0',
+              image: 'user.png',
+            ),
           ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            },
+            child: const ProductBox(
+              name: 'name',
+              description: 'description',
+              price: '10.0',
+              image: 'user.png',
+            ),
           ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            },
+            child: const ProductBox(
+              name: 'name',
+              description: 'description',
+              price: '10.0',
+              image: 'user.png',
+            ),
           ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            },
+            child: const ProductBox(
+              name: 'name',
+              description: 'description',
+              price: '10.0',
+              image: 'user.png',
+            ),
           ),
         ],
       ),
@@ -100,100 +126,6 @@ class ProductBox extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class RatingBox extends StatefulWidget {
-  const RatingBox({super.key});
-
-  @override
-  _RatingBox createState() => _RatingBox();
-}
-
-class _RatingBox extends State<RatingBox> {
-  int _rating = 0;
-
-  void _setRatingAsOne() {
-    setState(() {
-      _rating = 1;
-    });
-  }
-
-  void _setRatingAsTwo() {
-    setState(() {
-      _rating = 2;
-    });
-  }
-
-  void _setRatingAsThree() {
-    setState(() {
-      _rating = 3;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double size = 20;
-    print(_rating);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 1
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsOne,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 2
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsTwo,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 3
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsThree,
-          ),
-        )
-      ],
     );
   }
 }
