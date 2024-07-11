@@ -15,101 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RatingBox(),
-    );
-  }
-}
-
-class RatingBox extends StatefulWidget {
-  const RatingBox({super.key});
-
-  @override
-  _RatingBox createState() => _RatingBox();
-}
-
-class _RatingBox extends State<RatingBox> {
-  int _rating = 0;
-
-  void _setRatingAsOne() {
-    setState(() {
-      _rating = 1;
-    });
-  }
-
-  void _setRatingAsTwo() {
-    setState(() {
-      _rating = 2;
-    });
-  }
-
-  void _setRatingAsThree() {
-    setState(() {
-      _rating = 3;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    double size = 20;
-    print(_rating);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 1
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsOne,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 2
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsTwo,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 3
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsThree,
-          ),
-        )
-      ],
+      home: const Main(),
     );
   }
 }
@@ -223,7 +129,7 @@ class ProductBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(2.0),
-      height: 120.0,
+      height: 130.0,
       child: Card(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -242,13 +148,108 @@ class ProductBox extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(description),
-                  Text(price.toString())
+                  Text(price.toString()),
+                  const RatingBox()
                 ],
               ),
             ))
           ],
         ),
       ),
+    );
+  }
+}
+
+class RatingBox extends StatefulWidget {
+  const RatingBox({super.key});
+
+  @override
+  _RatingBox createState() => _RatingBox();
+}
+
+class _RatingBox extends State<RatingBox> {
+  int _rating = 0;
+
+  void _setRatingAsOne() {
+    setState(() {
+      _rating = 1;
+    });
+  }
+
+  void _setRatingAsTwo() {
+    setState(() {
+      _rating = 2;
+    });
+  }
+
+  void _setRatingAsThree() {
+    setState(() {
+      _rating = 3;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double size = 20;
+    print(_rating);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            icon: (_rating >= 1
+                ? Icon(
+                    Icons.star,
+                    size: size,
+                  )
+                : Icon(
+                    Icons.star_border,
+                    size: size,
+                  )),
+            color: Colors.red[500],
+            iconSize: size,
+            onPressed: _setRatingAsOne,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            icon: (_rating >= 2
+                ? Icon(
+                    Icons.star,
+                    size: size,
+                  )
+                : Icon(
+                    Icons.star_border,
+                    size: size,
+                  )),
+            color: Colors.red[500],
+            iconSize: size,
+            onPressed: _setRatingAsTwo,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            icon: (_rating >= 3
+                ? Icon(
+                    Icons.star,
+                    size: size,
+                  )
+                : Icon(
+                    Icons.star_border,
+                    size: size,
+                  )),
+            color: Colors.red[500],
+            iconSize: size,
+            onPressed: _setRatingAsThree,
+          ),
+        )
+      ],
     );
   }
 }
