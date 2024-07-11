@@ -15,7 +15,43 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Main(),
+      home: const Gesture(),
+    );
+  }
+}
+
+class Gesture extends StatelessWidget {
+  const Gesture({super.key});
+
+  void _showDialogue(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("message"),
+            content: const Text("Sharkz Reigns"),
+            actions: [
+              CloseButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            _showDialogue(context);
+          },
+          child: const Text("show"),
+        ),
+      ),
     );
   }
 }
