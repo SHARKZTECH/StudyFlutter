@@ -1,199 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class Main extends StatelessWidget {
-  const Main({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Products Listings"),
-      ),
-      body: ListView(
-        shrinkWrap: true,
-        padding: const EdgeInsets.fromLTRB(2.0, 10.0, 2.0, 10.0),
-        children: const [
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-          ProductBox(
-            name: 'name',
-            description: 'description',
-            price: '10.0',
-            image: 'user.png',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ProductBox extends StatelessWidget {
-  const ProductBox({
-    super.key,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.image,
-  });
-
+class Product extends Model {
   final String name;
   final String description;
-  final String price;
+  final int price;
   final String image;
+  int rating;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(2.0),
-      height: 130.0,
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset(
-              "assets/images/$image",
-            ),
-            Expanded(
-                child: Container(
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(description),
-                  Text(price.toString()),
-                  const RatingBox()
-                ],
-              ),
-            ))
-          ],
-        ),
-      ),
-    );
-  }
-}
+  Product(this.name, this.description, this.price, this.image, this.rating);
 
-class RatingBox extends StatefulWidget {
-  const RatingBox({super.key});
-
-  @override
-  _RatingBox createState() => _RatingBox();
-}
-
-class _RatingBox extends State<RatingBox> {
-  int _rating = 0;
-
-  void _setRatingAsOne() {
-    setState(() {
-      _rating = 1;
-    });
+  factory Product.fromMap(Map<String, dynamic> json) {
+    return Product(json['name'], json['description'], json['price'],
+        json['image'], json['rating']);
   }
 
-  void _setRatingAsTwo() {
-    setState(() {
-      _rating = 2;
-    });
+  void updateRating(int myRating) {
+    rating = myRating;
+
+    notifyListeners();
   }
 
-  void _setRatingAsThree() {
-    setState(() {
-      _rating = 3;
-    });
-  }
+  static List<Product> getProducts() {
+    List<Product> items = <Product>[];
 
-  @override
-  Widget build(BuildContext context) {
-    double size = 20;
-    print(_rating);
+    items.add(Product("name", "description", 10, "user.png", 0));
+    items.add(Product("name", "description", 10, "user.png", 0));
+    items.add(Product("name", "description", 10, "user.png", 0));
+    items.add(Product("name", "description", 10, "user.png", 0));
+    items.add(Product("name", "description", 10, "user.png", 0));
+    items.add(Product("name", "description", 10, "user.png", 0));
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 1
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsOne,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 2
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsTwo,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            icon: (_rating >= 3
-                ? Icon(
-                    Icons.star,
-                    size: size,
-                  )
-                : Icon(
-                    Icons.star_border,
-                    size: size,
-                  )),
-            color: Colors.red[500],
-            iconSize: size,
-            onPressed: _setRatingAsThree,
-          ),
-        )
-      ],
-    );
+    return items;
   }
 }
