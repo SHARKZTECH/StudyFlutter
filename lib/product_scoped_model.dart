@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'product.dart';
 import 'product_page_scope_model.dart';
 
@@ -52,19 +53,23 @@ class ProductBox extends StatelessWidget {
             Expanded(
                 child: Container(
               padding: const EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    item.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(item.description),
-                  Text(item.price.toString()),
-                  RatingBox(
-                    item: item,
-                  )
-                ],
+              child: ScopedModel(
+                model: item,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      item.name,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(item.description),
+                    Text(item.price.toString()),
+                    ScopedModelDescendant<Product>(
+                        builder: (context, child, item) {
+                      return RatingBox(item: item);
+                    })
+                  ],
+                ),
               ),
             ))
           ],
