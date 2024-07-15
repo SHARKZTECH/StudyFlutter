@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'product.dart';
+import 'product_page_scope_model.dart';
 
 class Main extends StatelessWidget {
   Main({super.key});
@@ -10,12 +11,21 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Products Listings"),
+          title: const Text("Products Listings"),
         ),
         body: ListView.builder(
             itemCount: items.length,
             itemBuilder: (context, index) {
-              return ProductBox(item: items[index]);
+              return GestureDetector(
+                child: ProductBox(item: items[index]),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ProductPage(item: items[index])));
+                },
+              );
             }));
   }
 }
