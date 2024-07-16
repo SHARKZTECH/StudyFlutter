@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'product.dart';
-import 'product_page_scope_model.dart';
+import 'product_page.dart';
 
 class Main extends StatelessWidget {
   Main({super.key});
