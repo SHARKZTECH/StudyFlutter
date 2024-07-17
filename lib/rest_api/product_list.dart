@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_project/product_page.dart';
+import 'package:study_project/rest_api/product_page.dart';
 import 'package:study_project/statefull/rating_box.dart';
 import 'product.dart';
 
@@ -10,7 +10,6 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(products);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Products Listings"),

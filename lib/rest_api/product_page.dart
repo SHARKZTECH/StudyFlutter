@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../statefull/rating_box.dart';
+import '../../statefull/rating_box.dart';
 import 'product.dart';
 
 class ProductPage extends StatelessWidget {

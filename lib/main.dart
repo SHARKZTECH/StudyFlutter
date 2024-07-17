@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:study_project/product.dart';
+import 'package:study_project/rest_api/product.dart';
 
 // import 'product_statefull.dart';
 // import 'scoped_model/product_list.dart';
-import 'package:study_project/product_list.dart';
+import 'package:study_project/rest_api/product_list.dart';
 
 void main() {
   runApp(MyApp(products: fetchProducts()));
