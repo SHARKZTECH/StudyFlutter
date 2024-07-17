@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:study_project/rest_api/product.dart';
 
+import 'package:study_project/sqlitedb/database.dart';
+import 'package:study_project/sqlitedb/product.dart';
+
+// import 'package:study_project/rest_api/product.dart';
 // import 'product_statefull.dart';
 // import 'scoped_model/product_list.dart';
-import 'package:study_project/rest_api/product_list.dart';
+import 'package:study_project/sqlitedb/product_list.dart';
 
 void main() {
-  runApp(MyApp(products: fetchProducts()));
+  // runApp(MyApp(products: fetchProducts()));
+  runApp(MyApp(products: SQLiteDbProvider.db.getAllProducts()));
 }
 
 List<Product> parseProducts(String responseBody) {
