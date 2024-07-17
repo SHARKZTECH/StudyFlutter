@@ -7,19 +7,34 @@ import 'product.dart';
 
 class SQLiteDbProvider {
   SQLiteDbProvider._();
-
   static final SQLiteDbProvider db = SQLiteDbProvider._();
 
   late Database _database;
+  bool _isDatabaseInitialized = false;
+
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_isDatabaseInitialized) {
+      return _database;
+    }
+
     _database = await initDB();
+    _isDatabaseInitialized = true;
     return _database;
   }
 
-  Future<Database> initDB() async {
+  Future<void> deleteDatabaseFile() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "ProductDB.db");
+    if (await databaseExists(path)) {
+      await deleteDatabase(path);
+    }
+  }
+
+  Future<Database> initDB() async {
+    // await deleteDatabaseFile(); // Clear the existing database first
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, "ProductDB.db");
+
     return await openDatabase(
       path,
       version: 1,
@@ -45,7 +60,7 @@ class SQLiteDbProvider {
       'name': 'iPhone',
       'description': 'iPhone is the stylist phone ever',
       'price': 1000,
-      'image': 'iphone.png'
+      'image': 'user.png'
     });
 
     await db.insert('Product', {
@@ -53,7 +68,7 @@ class SQLiteDbProvider {
       'name': 'Pixel',
       'description': 'Pixel is the most feature phone ever',
       'price': 800,
-      'image': 'pixel.png'
+      'image': 'user.png'
     });
 
     await db.insert('Product', {
@@ -61,7 +76,7 @@ class SQLiteDbProvider {
       'name': 'Laptop',
       'description': 'Laptop is most productive development tool',
       'price': 2000,
-      'image': 'laptop.png'
+      'image': 'user.png'
     });
 
     await db.insert('Product', {
@@ -69,7 +84,7 @@ class SQLiteDbProvider {
       'name': 'Tablet',
       'description': 'Tablet is most productive development tool',
       'price': 1500,
-      'image': 'tablet.png'
+      'image': 'user.png'
     });
 
     await db.insert('Product', {
@@ -77,7 +92,7 @@ class SQLiteDbProvider {
       'name': 'Pendrive',
       'description': 'Pendrive is useful storage medium',
       'price': 100,
-      'image': 'pendrive.png'
+      'image': 'user.png'
     });
 
     await db.insert('Product', {
@@ -85,7 +100,7 @@ class SQLiteDbProvider {
       'name': 'Floppy Drive',
       'description': 'Floppy drive is useful rescue storage medium',
       'price': 20,
-      'image': 'floppy.png'
+      'image': 'user.png'
     });
   }
 

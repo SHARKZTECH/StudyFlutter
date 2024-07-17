@@ -13,6 +13,9 @@ import 'package:study_project/sqlitedb/product_list.dart';
 
 void main() {
   // runApp(MyApp(products: fetchProducts()));
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Ensure the Flutter bindings are initialized
+
   runApp(MyApp(products: SQLiteDbProvider.db.getAllProducts()));
 }
 
